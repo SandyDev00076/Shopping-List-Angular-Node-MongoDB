@@ -4,3 +4,5 @@ A Cross Platform Application which not only puts item in your list, but can also
 Built End-to-End using Node, Express and MongoDB as **BackEnd** and Angular as **FrontEnd**.
 Along with Ionic to give responsive and attractive UI elements.
 And Cordova or PhoneGap to provide a Cross-Platform behavior.
+
+Using MongoDB Atlas, which is Database-as-a-Service, for a mobile database.
