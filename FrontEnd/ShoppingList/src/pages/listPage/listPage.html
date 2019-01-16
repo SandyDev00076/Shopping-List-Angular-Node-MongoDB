@@ -1,6 +1,48 @@
 <ion-header>
-
+    <ion-navbar>
+        <ion-title>Shopping List</ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-    
+    <div *ngIf="lists.length === 0" class="emptylists">
+        <span style="font-size: 20dp">No Lists</span>
+        <br>
+        <span style="font-size: 40px">Yet!</span>
+    </div>
+    <ion-list no-lines>
+        <ion-item *ngFor="let list of lists">
+            <ion-badge class="listcreatedon">{{ list.createdOn }}</ion-badge>
+            <ion-card>
+                <ion-card-header>
+                    <span class="listtitle">{{ list.listName }}</span>
+                    <ion-badge color="primary" class="listcategory">{{ list.listCategory }}</ion-badge>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item *ngFor="let item of list.listItems" class="listitem">
+                            {{ item.itemName }}
+                            <span style="float: right">
+                                {{ item.itemQuantity }}
+                                {{ item.itemUnit | uppercase }}
+                            </span>
+                        </ion-item>
+                    </ion-list>
+                    <ion-row class="listfooter">
+                        <ion-col col-33>
+                            <ion-icon name="create"></ion-icon>
+                        </ion-col>
+                        <ion-col col-33>
+                            <ion-icon name="share"></ion-icon>
+                        </ion-col>
+                        <ion-col col-33>
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item>
+    </ion-list>
 </ion-content>
+<ion-footer text-center>
+    <button ion-button class="addBut" (click)="addList()">Add a List</button>
+</ion-footer>

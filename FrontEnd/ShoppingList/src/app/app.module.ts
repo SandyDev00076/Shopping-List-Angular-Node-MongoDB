@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/listPage/listPage';
+import { GetLists } from '../services/getLists.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ListPage } from '../pages/listPage/listPage';
     ListPage
   ],
   providers: [
+    GetLists,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
