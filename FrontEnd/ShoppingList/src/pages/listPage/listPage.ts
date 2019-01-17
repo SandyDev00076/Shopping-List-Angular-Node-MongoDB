@@ -10,6 +10,9 @@ import { ToastController } from 'ionic-angular';
 })
 export class ListPage {
     lists:List[] = [];
+    addingItem: boolean = false;
+    toAddList: List = new List();
+    toAddItem: Item = new Item();
 
     constructor(private getListService: GetLists,
                 private toastCtrl: ToastController) { }
@@ -49,5 +52,10 @@ export class ListPage {
 
     addList() {
         console.log('Add Item button clicked!');
+        this.addingItem = !this.addingItem;
+    }
+
+    getCurrentTimeStamp() {
+        return ( new Date().toDateString() + "  " + new Date().getHours() + ":" + new Date().getMinutes());
     }
 }

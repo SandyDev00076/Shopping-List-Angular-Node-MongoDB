@@ -10,6 +10,32 @@
         <span style="font-size: 40px">Yet!</span>
     </div>
     <ion-list no-lines>
+        <ion-item *ngIf="addingItem">
+            <ion-badge class="listcreatedon">{{ getCurrentTimeStamp() }}</ion-badge>
+            <ion-card *ngIf="addingItem">
+                <ion-card-content>
+                    <ion-item>
+                        <ion-input class="listtitle" placeholder="List Name" [(ngModel)]="toAddList.listName"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-row class="choosecategory">
+                            <ion-col col-33 text-center (click)="grocery=true;general=false;other=false;toAddList.listCategory='grocery'" [ngClass]="{'selectcategory' : !grocery, 'selectcategory-selected': grocery}">
+                                Grocery
+                            </ion-col>
+                            <ion-col col-33 text-center (click)="general=true;grocery=false;other=false;toAddList.listCategory='general'" [ngClass]="{'selectcategory' : !general, 'selectcategory-selected': general}">
+                                General
+                            </ion-col>
+                            <ion-col col-33 text-center (click)="other=true;grocery=false;general=false;toAddList.listCategory='other'" [ngClass]="{'selectcategory' : !other, 'selectcategory-selected': other}">
+                                Other
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                    <ion-item>
+                        
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-item>
         <ion-item *ngFor="let list of lists">
             <ion-badge class="listcreatedon">{{ list.createdOn }}</ion-badge>
             <ion-card>
@@ -44,5 +70,6 @@
     </ion-list>
 </ion-content>
 <ion-footer text-center>
-    <button ion-button class="addBut" (click)="addList()">Add a List</button>
+    <button *ngIf="!addingItem" ion-button class="addBut" (click)="addList()">Add a List</button>
+    <button *ngIf="addingItem" ion-button class="addBut" (click)="addList()">Cancel</button>
 </ion-footer>
